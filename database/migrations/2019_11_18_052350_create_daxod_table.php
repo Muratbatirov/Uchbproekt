@@ -15,6 +15,11 @@ class CreateDaxodTable extends Migration
     {
         Schema::create('daxod', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('summa');
+            $table->integer('daxcategor_id');
+            $table->char('mesto', 20); 
+            $table->date('data');          
             $table->timestamps();
         });
     }

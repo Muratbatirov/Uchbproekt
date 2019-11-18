@@ -15,6 +15,7 @@ class CreateDaxodCategoriyaTable extends Migration
     {
         Schema::create('daxcategor', function (Blueprint $table) {
             $table->increments('id');
+            $table->char('name', 50);
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ class CreateRasxodCategoriyaTable extends Migration
     {
         Schema::create('rascategor', function (Blueprint $table) {
             $table->increments('id');
+            $table->char('name', 50); 
             $table->timestamps();
         });
     }
