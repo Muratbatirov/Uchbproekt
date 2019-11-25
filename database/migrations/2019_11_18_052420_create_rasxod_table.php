@@ -15,12 +15,14 @@ class CreateRasxodTable extends Migration
     {
         Schema::create('rasxod', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->integer('summa');
-            $table->integer('rascategor_id');
+            $table->integer('rascategor_id')->unsigned();
             $table->char('mesto', 20); 
             $table->date('data'); 
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('rascategor_id')->references('id')->on('rascategor');
         });
     }
 
