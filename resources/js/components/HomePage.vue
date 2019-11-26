@@ -1,5 +1,8 @@
 <template>
+    <div>
+         <fixed-menu/>
 <div class="container">
+  
   <div class="row justify-content-center">
      <div class="col-md-4 ">
          <home-balans/>
@@ -17,6 +20,7 @@
      </div>
   </div> 
 </div>
+</div>
 </template>
 
 <script>
@@ -24,7 +28,7 @@ import HomeBalans from './HomeBalans';
 import HomeDaxod from './HomeDaxod'; 
 import HomeRasxod from './HomeRasxod'; 
 import HomeOtchet from './HomeOtchet';  
-
+import FixedMenu from './FixedMenu'; 
 
     export default {
     	
@@ -32,7 +36,8 @@ import HomeOtchet from './HomeOtchet';
                  HomeBalans,
                  HomeDaxod,
                  HomeRasxod,
-                 HomeOtchet
+                 HomeOtchet,
+                 FixedMenu
               
                   },       
        
@@ -48,3 +53,10 @@ import HomeOtchet from './HomeOtchet';
 
     }
 </script>
+<style>
+ .container {
+    position: relative;
+ }   
+
+
+</style>
