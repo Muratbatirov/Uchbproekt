@@ -24,16 +24,23 @@
 
      
    <transition name="v-slide">
-   <div v-show="isActive" class="aa">
-   <button type="button" class="btn btn-success shadow  btn-circle"><font-awesome-icon  :icon = "['fas', 'arrow-right']"/></button>
+     
    
-   <button type="button" class="btn  btn-danger btn-circle"><font-awesome-icon  :icon = "['fas', 'arrow-left']"/></button>
+     <div v-show="isActive" v-bind:class="menucard" class="card shadow-lg">
+   <button type="button" v-bind:class="menuitem"  class="btn-success "><span v-show="isShirokiy">Даход &nbsp</span> <font-awesome-icon  :icon = "['fas', 'arrow-right']"/></button>
    
-   <button type="button" class="btn btn-primary shadow btn-circle"><font-awesome-icon  :icon = "['fas', 'money-bill']"/></button>
+   <button type="button" v-bind:class="menuitem" class=" btn-danger "><span v-show="isShirokiy">Расход &nbsp</span><font-awesome-icon  :icon = "['fas', 'arrow-left']"/></button>
    
-   <button type="button" class="btn btn-primary shadow  btn-circle"><font-awesome-icon  :icon = "['fas', 'tools']"/></button>
-   <button type="button" class="btn btn-primary shadow-lg btn-circle"><font-awesome-icon  :icon = "['fas', 'sign-out-alt']"/></button>
+   <button type="button" v-bind:class="menuitem" class=" btn-primary "><span v-show="isShirokiy">Баланс &nbsp</span><font-awesome-icon  :icon = "['fas', 'money-bill']"/></button>
+   
+   <button type="button" v-bind:class="menuitem" class=" btn-primary "><span v-show="isShirokiy">Настройки &nbsp</span><font-awesome-icon  :icon = "['fas', 'tools']"/></button>
+   <button type="button" v-bind:class="menuitem" class=" btn-primary "><span v-show="isShirokiy">Выход &nbsp</span><font-awesome-icon  :icon = "['fas', 'sign-out-alt']"/></button>
+
+
+   <button type="button" v-on:click="shirokiymenu" v-bind:class="menuitem"  class=" btn-primary pad "><font-awesome-icon  :icon = "['fas', 'arrows-alt-h']"/></button>
+
 </div>
+
  </transition>
    </div>
 
@@ -55,7 +62,8 @@ import "vue-essential-transitions";
       size: 's',
       color: 'green',
       activeColor: 'orange',
-      expanded:false
+      expanded:false,
+      isShirokiy: false
      
     }
   },
@@ -69,7 +77,28 @@ import "vue-essential-transitions";
 
         funct(){
             this.isActive=!this.isActive;
+        },
+        shirokiymenu(){
+          this.isShirokiy=!this.isShirokiy;
         }
+
+        },
+        computed:{
+        menuitem: function (){
+            if (this.isShirokiy) {
+              return "btn  shadow btn-shirokiy" }
+              else{
+              return "btn  shadow btn-circle"
+              }
+         },
+        menucard: function (){
+        if (this.isShirokiy) {
+              return "shirokiy" }
+              else{
+              return "uzkiy"
+              }
+         }
+
 
         }
 
@@ -79,7 +108,17 @@ import "vue-essential-transitions";
 <style>
 /* CSS */
 .btn-circle {
-    width: 38px;
+   width: 38px;
+    height: 38px;
+    border-radius: 19px;
+    text-align: center;
+     padding-left: 0;
+    margin-top: .3em;
+    padding-right: 0;
+    font-size: 16px;
+}
+.btn-shirokiy{
+  width: 95%;
     height: 38px;
     border-radius: 19px;
     text-align: center;
@@ -89,21 +128,45 @@ import "vue-essential-transitions";
     font-size: 16px;
 }
  
-.aa {
+.uzkiy {
     display: flex;
     flex-direction:  column;
+    align-items: center;
     position: fixed;
     top: 20%;
     right: 0;
     left: 80%;
     right: 10%;
     z-index: 10;
+    border-radius: 2em;
    
 }
-@media (max-width: 330px) {
- .aa {
+.shirokiy{
+  display: flex;
+    flex-direction:  column;
+    align-items: center;
+    position: fixed;
+    top: 20%;
+    right: 0;
+    left: 10%;
+    right: 10%;
+    z-index: 10;
+    border-radius: 2em;
+}
+.pad{
+  margin: 0.2em;
+}
+@media (max-width: 370px) {
+ .uzkiy {
+     left: 78%;
      right: 5%;
  }
-}
 
+}
+ @media (max-width: 250px) {
+ .uzkiy {
+     left: 75%;
+     right: 2%;
+   }
+ }
 </style>

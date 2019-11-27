@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
       $this->call(UserTableSeeder::class);
       //$this->call(DaxodTableSeeder::class);
-      $this->call(RasxodTableSeeder::class);
+     // $this->call(RasxodTableSeeder::class);
     //  $this->call(BalansTableSeeder::class);
 
 

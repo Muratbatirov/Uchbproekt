@@ -11448,6 +11448,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11459,7 +11466,8 @@ __webpack_require__.r(__webpack_exports__);
       size: 's',
       color: 'green',
       activeColor: 'orange',
-      expanded: false
+      expanded: false,
+      isShirokiy: false
     };
   },
   components: {
@@ -11469,6 +11477,25 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     funct: function funct() {
       this.isActive = !this.isActive;
+    },
+    shirokiymenu: function shirokiymenu() {
+      this.isShirokiy = !this.isShirokiy;
+    }
+  },
+  computed: {
+    menuitem: function menuitem() {
+      if (this.isShirokiy) {
+        return "btn  shadow btn-shirokiy";
+      } else {
+        return "btn  shadow btn-circle";
+      }
+    },
+    menucard: function menucard() {
+      if (this.isShirokiy) {
+        return "shirokiy";
+      } else {
+        return "uzkiy";
+      }
     }
   }
 });
@@ -16160,7 +16187,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* CSS */\n.btn-circle {\n    width: 38px;\n    height: 38px;\n    border-radius: 19px;\n    text-align: center;\n     padding-left: 0;\n    margin-top: .3em;\n    padding-right: 0;\n    font-size: 16px;\n}\n.aa {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient:  vertical;\n    -webkit-box-direction:  normal;\n            flex-direction:  column;\n    position: fixed;\n    top: 20%;\n    right: 0;\n    left: 80%;\n    right: 10%;\n    z-index: 10;\n}\n@media (max-width: 330px) {\n.aa {\n     right: 5%;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* CSS */\n.btn-circle {\n   width: 38px;\n    height: 38px;\n    border-radius: 19px;\n    text-align: center;\n     padding-left: 0;\n    margin-top: .3em;\n    padding-right: 0;\n    font-size: 16px;\n}\n.btn-shirokiy{\n  width: 95%;\n    height: 38px;\n    border-radius: 19px;\n    text-align: center;\n     padding-left: 0;\n    margin-top: .3em;\n    padding-right: 0;\n    font-size: 16px;\n}\n.uzkiy {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient:  vertical;\n    -webkit-box-direction:  normal;\n            flex-direction:  column;\n    -webkit-box-align: center;\n            align-items: center;\n    position: fixed;\n    top: 20%;\n    right: 0;\n    left: 80%;\n    right: 10%;\n    z-index: 10;\n    border-radius: 2em;\n}\n.shirokiy{\n  display: -webkit-box;\n  display: flex;\n    -webkit-box-orient:  vertical;\n    -webkit-box-direction:  normal;\n            flex-direction:  column;\n    -webkit-box-align: center;\n            align-items: center;\n    position: fixed;\n    top: 20%;\n    right: 0;\n    left: 10%;\n    right: 10%;\n    z-index: 10;\n    border-radius: 2em;\n}\n.pad{\n  margin: 0.2em;\n}\n@media (max-width: 370px) {\n.uzkiy {\n     left: 78%;\n     right: 5%;\n}\n}\n@media (max-width: 250px) {\n.uzkiy {\n     left: 75%;\n     right: 2%;\n}\n}\n", ""]);
 
 // exports
 
@@ -47776,16 +47803,33 @@ var render = function() {
                 expression: "isActive"
               }
             ],
-            staticClass: "aa"
+            staticClass: "card shadow-lg",
+            class: _vm.menucard
           },
           [
             _c(
               "button",
               {
-                staticClass: "btn btn-success shadow  btn-circle",
+                staticClass: "btn-success ",
+                class: _vm.menuitem,
                 attrs: { type: "button" }
               },
               [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.isShirokiy,
+                        expression: "isShirokiy"
+                      }
+                    ]
+                  },
+                  [_vm._v("Даход  ")]
+                ),
+                _vm._v(" "),
                 _c("font-awesome-icon", {
                   attrs: { icon: ["fas", "arrow-right"] }
                 })
@@ -47796,10 +47840,25 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn  btn-danger btn-circle",
+                staticClass: " btn-danger ",
+                class: _vm.menuitem,
                 attrs: { type: "button" }
               },
               [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.isShirokiy,
+                        expression: "isShirokiy"
+                      }
+                    ]
+                  },
+                  [_vm._v("Расход  ")]
+                ),
                 _c("font-awesome-icon", {
                   attrs: { icon: ["fas", "arrow-left"] }
                 })
@@ -47810,10 +47869,25 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary shadow btn-circle",
+                staticClass: " btn-primary ",
+                class: _vm.menuitem,
                 attrs: { type: "button" }
               },
               [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.isShirokiy,
+                        expression: "isShirokiy"
+                      }
+                    ]
+                  },
+                  [_vm._v("Баланс  ")]
+                ),
                 _c("font-awesome-icon", {
                   attrs: { icon: ["fas", "money-bill"] }
                 })
@@ -47824,22 +47898,70 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary shadow  btn-circle",
+                staticClass: " btn-primary ",
+                class: _vm.menuitem,
                 attrs: { type: "button" }
               },
-              [_c("font-awesome-icon", { attrs: { icon: ["fas", "tools"] } })],
+              [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.isShirokiy,
+                        expression: "isShirokiy"
+                      }
+                    ]
+                  },
+                  [_vm._v("Настройки  ")]
+                ),
+                _c("font-awesome-icon", { attrs: { icon: ["fas", "tools"] } })
+              ],
               1
             ),
             _vm._v(" "),
             _c(
               "button",
               {
-                staticClass: "btn btn-primary shadow-lg btn-circle",
+                staticClass: " btn-primary ",
+                class: _vm.menuitem,
                 attrs: { type: "button" }
               },
               [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.isShirokiy,
+                        expression: "isShirokiy"
+                      }
+                    ]
+                  },
+                  [_vm._v("Выход  ")]
+                ),
                 _c("font-awesome-icon", {
                   attrs: { icon: ["fas", "sign-out-alt"] }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: " btn-primary pad ",
+                class: _vm.menuitem,
+                attrs: { type: "button" },
+                on: { click: _vm.shirokiymenu }
+              },
+              [
+                _c("font-awesome-icon", {
+                  attrs: { icon: ["fas", "arrows-alt-h"] }
                 })
               ],
               1
@@ -63703,7 +63825,8 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faSpinner"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faMoneyBill"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faArrowRight"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faArrowLeft"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTools"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faSignOutAlt"]);
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faSpinner"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faMoneyBill"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faArrowRight"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faArrowLeft"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTools"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faArrowsAltH"]);
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"]);
 /**
  * The following block of code may be used to automatically register your

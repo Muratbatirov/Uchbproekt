@@ -20,8 +20,8 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faTools } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-
-library.add(faSpinner,faMoneyBill,faArrowRight, faArrowLeft, faTools,faSignOutAlt)
+import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons'
+library.add(faSpinner,faMoneyBill,faArrowRight, faArrowLeft, faTools,faSignOutAlt,faArrowsAltH)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 /**
