@@ -1,9 +1,9 @@
 <template>
     <div>
-         <fixed-menu/>
+         
 <div class="container">
   
-  <div class="row justify-content-center">
+  <div class="row justify-content-center aa">
      <div class="col-md-4 ">
          <home-balans/>
      </div>
@@ -28,7 +28,7 @@ import HomeBalans from './HomeBalans';
 import HomeDaxod from './HomeDaxod'; 
 import HomeRasxod from './HomeRasxod'; 
 import HomeOtchet from './HomeOtchet';  
-import FixedMenu from './FixedMenu'; 
+
 
     export default {
     	
@@ -36,9 +36,8 @@ import FixedMenu from './FixedMenu';
                  HomeBalans,
                  HomeDaxod,
                  HomeRasxod,
-                 HomeOtchet,
-                 FixedMenu
-              
+                 HomeOtchet
+                 
                   },       
        
         mounted() {
@@ -58,5 +57,7 @@ import FixedMenu from './FixedMenu';
     position: relative;
  }   
 
-
+.aa{
+    margin-top: 20px;
+}
 </style>

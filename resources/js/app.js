@@ -23,6 +23,8 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons'
 library.add(faSpinner,faMoneyBill,faArrowRight, faArrowLeft, faTools,faSignOutAlt,faArrowsAltH)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+import { store } from './store/store';
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -46,5 +48,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 const app = new Vue({
     el: '#pp',
 	render : h => h(App),
+	store,
 	router
+
 });
