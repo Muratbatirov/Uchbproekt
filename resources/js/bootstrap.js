@@ -54,6 +54,3 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-Chart.defaults.global.legend = {
-  enabled: false
-};

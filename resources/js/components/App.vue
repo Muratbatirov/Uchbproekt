@@ -1,6 +1,6 @@
 <template>
 	<div>
-<fixed-menu/>
+
 
  <router-view></router-view>
     </div>
@@ -8,7 +8,6 @@
 
 <script>
 	
-import FixedMenu from './FixedMenu'; 
 
  
 
@@ -20,7 +19,7 @@ import FixedMenu from './FixedMenu';
         },
         components: {
                  
-                 FixedMenu
+                 
               
                   }, 
         methods: {

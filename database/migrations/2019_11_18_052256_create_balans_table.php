@@ -15,10 +15,8 @@ class CreateBalansTable extends Migration
     {
         Schema::create('balans', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unique()->unsigned();
-            $table->integer('nalichnie');
-            $table->integer('plastik_1');
-            $table->integer('plastik_2');        
+            $table->integer('user_id')->unsigned();
+            $table->string('vid',20);    
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

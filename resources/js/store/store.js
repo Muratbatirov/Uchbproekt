@@ -1,17 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import kirim from './modules/kirim';
+import rasxod from './modules/rasxod';
 Vue.use(Vuex);
 
 
 export const store = new Vuex.Store({
   modules: {
-    kirim
+    kirim,
+    rasxod
   },
   state: {
     balans: 0,
     compshow: false,
-    categorya: {}
+    categorya: {},
+    modaldoxod:false
   },
   getters: {
     summa: state => {
@@ -19,8 +22,9 @@ export const store = new Vuex.Store({
     componshow: state => {
       return state.compshow;},
     kategorya: state => {
-     return state.categorya;}
-    
+     return state.categorya;},
+     modaldoxod: state => {
+     return state.modaldoxod;},
     },
   mutations: {
     'SET_STORE' (state, balans) {
@@ -31,6 +35,9 @@ export const store = new Vuex.Store({
     },
     'CAT_SHOW' (state, categorya) {
       state.categorya = categorya;
+    },
+    'MODAL_DOXOD' (state) {
+      state.modaldoxod = ! state.modaldoxod;
     }
   },
   actions: {

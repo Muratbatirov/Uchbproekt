@@ -1,42 +1,30 @@
 <template>
     <div>
-         
+      <fixed-menu/>   
 <div class="container">
   
   <div class="row justify-content-center aa">
-     <div class="col-md-4 ">
-         <home-balans/>
+     <div class="col-md-12 ">
+        
+        <router-view></router-view>
      </div>
-     <div class="col-md-4 ">
-         <home-daxod/>
-     </div>
+     
   </div>
-  <div class="row justify-content-center">
-     <div class="col-md-4 ">
-         <home-rasxod/>
-     </div>
-     <div class="col-md-4 ">
-         <home-otchet/>
-     </div>
-  </div> 
+ 
 </div>
 </div>
 </template>
 
 <script>
-import HomeBalans from './HomeBalans';	
-import HomeDaxod from './HomeDaxod'; 
-import HomeRasxod from './HomeRasxod'; 
-import HomeOtchet from './HomeOtchet';  
+
+import FixedMenu from './FixedMenu'; 
 
 
     export default {
     	
      components: {
-                 HomeBalans,
-                 HomeDaxod,
-                 HomeRasxod,
-                 HomeOtchet
+                
+                 FixedMenu
                  
                   },       
        
@@ -53,9 +41,7 @@ import HomeOtchet from './HomeOtchet';
     }
 </script>
 <style>
- .container {
-    position: relative;
- }   
+  
 
 .aa{
     margin-top: 20px;

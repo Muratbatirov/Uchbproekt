@@ -10,33 +10,24 @@ export default new VueRouter({
 	{
 		path : '/home',
 		name: 'home',
-		component : HomePage
+		component : HomePage,
+		children: [
+		 {path: 'daxod',
+          name: 'daxod',
+          component: HomeDaxod},
+         {path: 'rasxod',
+         name: 'rasxod',
+          component: HomeRasxod},
+          {path: 'balans',
+          name: 'balans',
+          component: HomeBalans}
+
+
+
+          ]
 	
 	},
-    {
-		path : '/balans',
-		name: 'balans',
-		component : HomeBalans
-	
-	},
-	{
-		path : '/daxod',
-		name: 'daxod',
-		component : HomeDaxod
-	
-	},
-	{
-		path : '/rasxod',
-		name: 'rasxod',
-		component : HomeRasxod
-	
-	},
-	{
-		path : '/otchet',
-		name: 'otchet',
-		component : HomeOtchet
-	
-	}
+    
 
 
 

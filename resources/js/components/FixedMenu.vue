@@ -1,20 +1,29 @@
 <template>
 
    <div> 
+        <nav  class="navbar  navbar-light shadow">
 
-<nav  class="navbar  navbar-light shadow">
             <div class="container">
                 <a class="navbar-brand" href="#">
                     Dommoneyy
                 </a>
+              </div>
+           </nav>
+
+            <div class="container">
+              <div class="row navmen">
+                <div class="col-xl-4 col-md-3 col-sm-2">Dommoney
+                  </div>
+              <div class="col-xl-5 col-md-9  offset-md-1 offset-xl-3">
+                <nav  >
                 <ul class="shirmenu">
-      <li><a href="" @click.prevent="daxod">Даход</a></li>
-      <li><a href="" @click.prevent="rasxod">Расход</a></li>
-      <li><a href="" @click.prevent="balans">Баланс</a></li>
-      <li><a href="" @click.prevent="otchet">Отчеты</a></li>
-      <li class="nastr" ><a href="" @click.prevent="otchet">Настройки</a></li>
-      <li><a href="" @click.prevent="otchet">Выход</a></li>
-      <li class="linya" v-bind:class="linyaclass"><a >&nbsp</a></li>
+      <li id="lin1" class="li"><a href="" @click.prevent="balans">Баланс</a></li>
+      <li id="lin2"  class="li"><a href="" @click.prevent="daxod">Доходы</a></li>
+      <li id="lin3" class="li"><a href="" @click.prevent="rasxod">Расходы</a></li>
+      <li id="lin4" class="li"><a href="" @click.prevent="otchet">Отчеты</a></li>
+      <li id="lin5"  class="liposled nastr" ><a href="" @click.prevent="otchet">Настройки</a></li>
+     
+      <li id="linya"  class="li linya" ><a >&nbsp</a></li>
     </ul>
 <div class="gamburger">
  <tasty-burger-button  :type="buttonType" 
@@ -26,8 +35,11 @@
 
          />
          </div>
+         </nav>
+         </div>
+       </div>
                 </div>
-</nav>
+
        
 
 
@@ -85,20 +97,65 @@ import "vue-essential-transitions";
   },
         mounted() {
             
+            let chiz = document.getElementById("linya");
+           this.dlinalinii(chiz, "lin1", "lin2");
         },
+        watch:{
+    $route (to, from){
+        this.linya();
+    }
+    
+} ,
+
         methods: {
           daxod(){
-            this.$router.push({ name: 'daxod' })
+            this.$router.push({ name: 'daxod' });
+           
+
           },
           rasxod(){
-            this.$router.push({ name: 'rasxod' })
+            this.$router.push({ name: 'rasxod' });
+            
           },
           balans(){
-            this.$router.push({ name: 'balans' })
+            this.$router.push({ name: 'balans' });
+            
           },
           otchet(){
             this.$router.push({ name: 'otchet' })
           },
+          dlinalinii(linya, linId1, linId2){
+            let linya_1 = document.getElementById(linId1);
+            let linya_2 = document.getElementById(linId2);  
+            let dlina = linya_2.getBoundingClientRect().left-linya_1.getBoundingClientRect().left; 
+            linya.style.width =dlina +"px";
+          },
+          linya(){
+          
+         
+         
+        if (this.$route.name == 'balans') {
+          
+          let chiziq = document.getElementById("linya");
+          
+          
+          chiziq.style.left = 0 + "px";
+          
+
+          }
+          else if(this.$route.name == 'daxod') {
+           let navmenyu = document.getElementById("lin2");
+          let chiziq = document.getElementById("linya");
+           let coords = navmenyu.getBoundingClientRect();
+           chiziq.style.left =  coords.left - document.getElementById("lin1").getBoundingClientRect().left  + "px" ;
+          }
+          else {
+            let navmenyu = document.getElementById("lin3");
+          let chiziq = document.getElementById("linya");
+           let coords = navmenyu.getBoundingClientRect();
+            chiziq.style.left =  coords.left - document.getElementById("lin1").getBoundingClientRect().left  + "px" ;
+          }
+        },
 
         funct(){
             this.isActive=!this.isActive;
@@ -123,24 +180,14 @@ import "vue-essential-transitions";
               return "uzkiy"
               }
          },
-        linyaclass: function(){
-        if (this.$route.name == 'balans') {
-          return "step1"
-          }
-          else if(this.$route.name == 'otchet') {
-            return "step2"
-          }
-          else {
-            return "step0"
-          }
-        }
+        
 
         }
 
 
     }
 </script>
-<style>
+<style scoped>
 /* CSS */
 
 
@@ -179,42 +226,47 @@ import "vue-essential-transitions";
     border-radius: 2em;
    
 }
-li {
+button {
+  margin-top: 10px;
+}
+.li {
   display: inline-block;
- width: 80px;
+  width: 15%;
+  margin-left: 1em;
  padding-right: 1em;
- padding-left: 1em;
+
+}
+
+.liposled{
+  display: inline-block;
+    margin-left: 1em;
+    width: 15%;
 }
 .gamburger{
   display: none;
 }
-.nastr {
-  margin-right: 2em;
-}
+
 ul {
   list-style: none;
-  margin: 0; 
-  padding-left: 0;
-  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 5px 0 5px;
+  background-color: #F7F7F7;
+  border-radius: 4px;
+ 
 }
 .linya {
 position: absolute;
-
+left: 0;
 top: 2.5em;
 border-top: solid;
-border-color: blue;
+border-color: #a3c2c2;
 border-width: 3px; 
-width: 80px;
+
 transition: all 0.5s ease-out;
 }
-.step0 {
-  left: 0px;
-}
-.step1 {
-  left: 160px;
-}
-.step2 {
-  left: 240px;
+
+.navmen{
+  padding-top: 5px;
 }
 
 

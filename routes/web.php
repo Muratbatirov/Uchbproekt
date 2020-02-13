@@ -18,7 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/resdaxod', 'HomeController@resdaxod');
+Route::post('/resdaxod', 'HomeController@resdaxod');
 Route::get('/datadax', 'HomeController@datadaxcategor');
 Route::post('/qoshish', 'HomeController@qoshish');
 Route::get('/dat', 'HomeController@qoshish');
+Route::get('/mesto', 'HomeController@mesto');
+Route::get('/rasxod', 'RasxodController@rasxod');
+Route::get('/dataras', 'RasxodController@dataras');
+Route::get('/rasmesto', 'RasxodController@rasmesto');
+Route::post('/rasqoshish', 'RasxodController@rasqoshish');
+Route::get('/deystviy', 'DoxodController@deystviy');
+Route::post('/udalit', 'DoxodController@udalit');
+Route::get('/deystviyper', 'DoxodController@deystviyper');
+Route::post('/redakt', 'DoxodController@redakt');
+Route::post('/qoshishred', 'HomeController@qoshishred');
+Route::get('/doxodmeses', 'DoxodController@doxodmeses');

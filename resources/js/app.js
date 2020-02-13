@@ -21,9 +21,16 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faTools } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons'
-library.add(faSpinner,faMoneyBill,faArrowRight, faArrowLeft, faTools,faSignOutAlt,faArrowsAltH)
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
+library.add(faSpinner,faMoneyBill,faArrowRight, faArrowLeft, faTools,faSignOutAlt,
+	faArrowsAltH,faPlus, faTrash,faPencilAlt, faCircleNotch)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 import { store } from './store/store';
+
+
 
 
 /**
