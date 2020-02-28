@@ -7,7 +7,9 @@ const state = {
     deystviy:[],
     redakt:false,
     doxid:0,
-    doxodmeses:[]
+    doxodmeses:[],
+    mestoxr:[],
+    state30: false
 
 };
 
@@ -20,6 +22,8 @@ const getters = {
     redakt: state => {return state.redakt},
     doxid: state => {return state.doxid},
     doxodmeses: state => {return state.doxodmeses},
+    mestoxr: state => {return state.mestoxr},
+    state30: state => {return state.state30},
 };
 
 
@@ -55,6 +59,15 @@ const mutations = {
     },
      'DOXODMESES' (state, dox_mes) {
       state.doxodmeses = dox_mes;
+    },
+    'MESTOXR' (state, mes_xr) {
+      state.mestoxr = mes_xr;
+    },
+    'STATE30' (state) {
+      state.state30 =true;
+    },
+    'STATE10' (state) {
+      state.state30 =false;
     }
 
 };
@@ -95,6 +108,18 @@ const actions = {
       axios.get('/doxodmeses')
       .then((response) =>{
         commit('DOXODMESES', response.data )
+      });
+    },
+    setDoxMes30: ({commit}) => {
+      axios.get('/doxodmeses30')
+      .then((response) =>{
+        commit('DOXODMESES', response.data )
+      });
+    },
+    setMesXr: ({commit}) => {
+      axios.post('/mestoxr', {raznitsa:state.raznitsa})
+      .then((response) =>{
+        commit('MESTOXR', response.data )
       });
     },
 

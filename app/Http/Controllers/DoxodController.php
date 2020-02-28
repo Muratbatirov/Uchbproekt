@@ -95,12 +95,73 @@ public function doxodmeses(){
             ->join('daxcategor', 'daxcategor.id', '=', 'daxod.dax_categor_id' )
             ->join('users', 'users.id', '=', 'daxod.user_id' )
             ->select(  'daxod.summa','daxod.data' ,'daxcategor.nomi')
+            ->where('users.id', 1)->whereBetween('daxod.data', [Carbon::now()->subDays(10), Carbon::now()])
+            ->orderBy('data')->get();
+          
+            return $doxodmes;
+
+}
+public function doxodmeses30(){
+
+ $doxodmes= DB::table('daxod')
+            ->join('daxcategor', 'daxcategor.id', '=', 'daxod.dax_categor_id' )
+            ->join('users', 'users.id', '=', 'daxod.user_id' )
+            ->select(  'daxod.summa','daxod.data' ,'daxcategor.nomi')
             ->where('users.id', 1)->whereBetween('daxod.data', [Carbon::now()->subDays(30), Carbon::now()])
             ->orderBy('data')->get();
           
             return $doxodmes;
 
 }
+public function mestoxr(Request $request){
+    $raznitsa = $request->get('raznitsa');
+    $curmeses= now()->month;
+    $meses;$god;
+    if ($raznitsa == 24 ){
+      $god = 2020;
+      $meses = $curmeses;
+    }
 
+    elseif ($raznitsa > 24 ){
+        $god = 2020;
+        $meses =  $curmeses + ($raznitsa-24);
+    }
+    elseif ($raznitsa <= (24-$curmeses) ) {
+      $god = 2019;
+      $meses =12-((24-$curmeses) - $raznitsa);
+    }
+    else {
+      $god = 2020;
+      $meses =24-$raznitsa;
+    }
+
+ $doxodsum= DB::table('daxod')->join('users', 'users.id', '=', 'daxod.user_id' )
+            ->where('users.id', 1)->select( 'daxod.mesto',  DB::raw("SUM(daxod.summa) as count"))
+            ->whereYear('daxod.data', '=', $god)->whereMonth('daxod.data', '=', $meses)
+            ->groupBy('daxod.mesto')->get();
+            
+          
+            return $doxodsum;
+
+}
+public function pochta(){
+
+ mail('nuriddinmamatov83@gmail.com', 'Тема письма', 'Текст письма', 'From: muratbatirov1989@gmail.com');
+
+}
+public function get(){
+
+
+function foo(&$var)
+{
+     $var++;
+   
+}
+
+$a=6;
+ foo($a);
+
+
+}
 
 }

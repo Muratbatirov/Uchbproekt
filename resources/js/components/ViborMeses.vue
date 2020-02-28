@@ -76,11 +76,13 @@ export default {
                        this.slider.left();
                        this.$store.commit('MINUS_RAZNITSA');
                        this.$store.dispatch('setDax');
+                        this.$store.dispatch('setMesXr');
                       },
                 right(){
                        this.slider.right();
                        this.$store.commit('PLUS_RAZNITSA');
                        this.$store.dispatch('setDax');
+                       this.$store.dispatch('setMesXr');
                       }                    
                },
       components: {

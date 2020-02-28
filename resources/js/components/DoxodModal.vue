@@ -34,7 +34,13 @@
             this.$store.commit('NOTREDAKT');
              this.$store.dispatch('setDax');
              this.$store.dispatch('setDeystviy');
-              this.$store.dispatch('setDoxMes');
+              this.$store.dispatch('setMesXr');
+              if(this.state30){
+                this.$store.dispatch('setDoxMes30');
+              }
+              else{
+                   this.$store.dispatch('setDoxMes');
+              }
 
         },
           modalzakrit: function (event){
@@ -43,14 +49,25 @@
                  this.$store.commit('NOTREDAKT');
                   this.$store.dispatch('setDax');
                   this.$store.dispatch('setDeystviy');
+                   this.$store.dispatch('setMesXr');
+                   if(this.state30){
+                this.$store.dispatch('setDoxMes30');
+              }
+              else{
                    this.$store.dispatch('setDoxMes');
+              }
              }
           }
           
 
 
-        }
+        },
+      computed:{
 
+   state30(){
+    return  this.$store.getters.state30;
+        }
+      }
   
     }
 </script>

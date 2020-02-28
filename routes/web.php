@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify'=> true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::post('/resdaxod', 'HomeController@resdaxod');
 Route::get('/datadax', 'HomeController@datadaxcategor');
 Route::post('/qoshish', 'HomeController@qoshish');
@@ -33,3 +33,7 @@ Route::get('/deystviyper', 'DoxodController@deystviyper');
 Route::post('/redakt', 'DoxodController@redakt');
 Route::post('/qoshishred', 'HomeController@qoshishred');
 Route::get('/doxodmeses', 'DoxodController@doxodmeses');
+Route::get('/doxodmeses30', 'DoxodController@doxodmeses30');
+Route::post('/mestoxr', 'DoxodController@mestoxr');
+Route::get('/pochta', 'DoxodController@pochta');
+Route::get('/get', 'DoxodController@get');

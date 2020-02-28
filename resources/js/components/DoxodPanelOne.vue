@@ -28,7 +28,8 @@
                                      :duration="600" /></b>
                                    </div>
                                    <div class="col-md-12 ">
-                                    
+                                    <bar-horizon :chart-data="chardata2" :height="150"  :options="options" >
+                                      </bar-horizon> 
                                    </div>
                                    </div>
                    </div>
@@ -75,7 +76,7 @@
 	import AnimatedNumber from "animated-number-vue";
   import ViborMeses from './ViborMeses'
   import LineChart from './LineChart.js'
-  
+  import BarHorizon from './BarHorizon.js' 
   import InputDoxod from './InputDoxod'
   import DoxodModal from './DoxodModal'
  
@@ -95,6 +96,54 @@ export default {
                                        '#f211eb',
                                        '#3e8743'
                                    ],
+                            chartdata: {
+      labels: ['Январь', 'Февраль','Февраль'],
+      datasets: [
+        {
+          label: 'Данные1',
+          maxBarThickness: 10,
+          backgroundColor: 'green',
+          data: [40, 20, 15],
+         
+          
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+            display: false,
+            
+      
+         },
+         scales: {
+        yAxes: [{ 
+          gridLines: {
+                color: "rgba(0, 0, 0, 0)",
+                display: false,
+            },
+            ticks: {
+                beginAtZero: true,
+                
+            },
+
+            
+        }],
+        xAxes: [{
+            gridLines: {
+                color: "rgba(0, 0, 0, 0)",
+                display: false,
+            }  ,
+            ticks: {
+            beginAtZero: true,
+            display: false
+        }
+            
+        }]
+    }
+      
+    }
                            
    
                             
@@ -108,7 +157,7 @@ export default {
                 },
       mounted(){
                this.currentMonth();
-              
+                this.$store.dispatch('setMesXr');
                },
    
       methods: {
@@ -174,7 +223,7 @@ export default {
                  ViborMeses,
                  InputDoxod,
                  DoxodModal,
-                
+               BarHorizon,
                   },
       computed: { 
                 sumdaxod () {
@@ -218,11 +267,41 @@ export default {
                                  label.push(this.$store.getters.daxod[i].nomi)
                                   }
                           return label;
+                          }, 
+                          chardata2 () {
+                          return {
+                                 labels : this.labeldata2,
+                                 datasets: [{
+                                            label : 'Kirim',
+                                             maxBarThickness: 10,
+                                             backgroundColor: 'green',
+                                            data :  this.charhor2
+                                           }]
+                                  }
+                          },
+                  charhor2(){
+                          let  chadata = [];
+                          let i;
+                          for (i = 0; i < this.mestoxr.length; i++) {
+                                 chadata.push(this.mestoxr[i].count)
+                                  }
+                          return chadata;
+                          },
+                labeldata2(){
+                          let  label = [];
+                          let i;
+                          for (i = 0; i < this.mestoxr.length; i++) {
+                                 label.push(this.mestoxr[i].mesto)
+                                  }
+                          return label;
                           },          
                
                 modaldoxod(){
                   return this.$store.getters.modaldoxod;
-                } 
+                } ,
+                mestoxr(){
+                  return this.$store.getters.mestoxr;
+                }
                 
                 }
               }
