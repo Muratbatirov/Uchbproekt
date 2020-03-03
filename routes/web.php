@@ -37,6 +37,7 @@ Route::get('/doxodmeses30', 'DoxodController@doxodmeses30');
 Route::post('/mestoxr', 'DoxodController@mestoxr');
 Route::get('/pochta', 'DoxodController@pochta');
 Route::get('/get', 'DoxodController@get');
+Route::get('/admin/dashboard','Admin\HomeController@index')->name('admin.home');
 Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
     Route::namespace('Auth')->group(function(){
 

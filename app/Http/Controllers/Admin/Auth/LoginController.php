@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 
 class LoginController extends Controller
 {
-
+    protected $guard = 'admin';
     /**
      * Show the login form.
      *
