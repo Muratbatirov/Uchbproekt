@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=> true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/resdaxod', 'HomeController@resdaxod');
 Route::get('/datadax', 'HomeController@datadaxcategor');
 Route::post('/qoshish', 'HomeController@qoshish');
@@ -37,3 +37,21 @@ Route::get('/doxodmeses30', 'DoxodController@doxodmeses30');
 Route::post('/mestoxr', 'DoxodController@mestoxr');
 Route::get('/pochta', 'DoxodController@pochta');
 Route::get('/get', 'DoxodController@get');
+Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
+    Route::namespace('Auth')->group(function(){
+
+        //Login Routes
+        Route::get('/login','LoginController@showLoginForm')->name('login');
+        Route::post('/login','LoginController@login');
+        Route::post('/logout','LoginController@logout')->name('logout');
+
+        //Forgot Password Routes
+        Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+
+        //Reset Password Routes
+        Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
+
+    });
+});
