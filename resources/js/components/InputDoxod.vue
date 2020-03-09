@@ -127,14 +127,14 @@ export default {
                                   axios.post('/qoshish', {balans:this.balans, nomi:this.datadaxcateg, time: this.time2, mesto:this.mesto}).then(re => {
                                this.spinner=false;    
                                this.load=false;
-                               alert('yozildi');
+                               
 
                                 })} 
                                 else {
                                   this.load=true; this.spinner=true;
                                   axios.post('/qoshishred', {balans:this.balans, nomi:this.datadaxcateg, time: this.time2, mesto:this.mesto, id:this.doxid}).then(re => {
                                this.spinner=false;    
-                               this.load=false; alert('yozildi'); })}
+                               this.load=false;  })}
 
                                 },
 

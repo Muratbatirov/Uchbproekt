@@ -9,7 +9,10 @@ const state = {
     doxid:0,
     doxodmeses:[],
     mestoxr:[],
-    state30: false
+    state30: false,
+    oneload:false,
+    twoload:false,
+    threeload:false,
 
 };
 
@@ -24,6 +27,9 @@ const getters = {
     doxodmeses: state => {return state.doxodmeses},
     mestoxr: state => {return state.mestoxr},
     state30: state => {return state.state30},
+    oneload: state => {return state.oneload},
+    twoload: state => {return state.twoload},
+    threeload: state => {return state.threeload},
 };
 
 
@@ -68,16 +74,25 @@ const mutations = {
     },
     'STATE10' (state) {
       state.state30 =false;
-    }
+    },
+     'ONELOAD' (state, booll) {
+      state.oneload =booll;
+    },
+    'TWOLOAD' (state, booll) {
+      state.twoload =booll;
+    },
+    'THREELOAD' (state, booll) {
+      state.threeload =booll;
+    },
 
 };
 
 const actions = {
     
-    setDax: ({commit}) => {
+    setDax: ({commit}) => {commit('ONELOAD', true );
       axios.post('/resdaxod' , {raznitsa:state.raznitsa})
       .then((response) =>{
-        commit('SET_DAXOD', response.data )
+       commit('ONELOAD', false ); commit('SET_DAXOD', response.data )
       });
     },
     setDataDax: ({commit}) => {
@@ -92,27 +107,27 @@ const actions = {
         commit('SET_DATAMESTO', response.data )
       });
     },
-    setDeystviy: ({commit}) => {
+    setDeystviy: ({commit}) => {commit('TWOLOAD', true );
       axios.get('/deystviy')
-      .then((response) =>{
+      .then((response) =>{commit('TWOLOAD', false );
         commit('SET_DEYSTVIY', response.data )
       });
     },
-    setDeystviyper: ({commit}) => {
+    setDeystviyper: ({commit}) => {commit('TWOLOAD', true );
       axios.get('/deystviyper')
-      .then((response) =>{
+      .then((response) =>{commit('TWOLOAD', false );
         commit('SET_DEYSTVIY', response.data )
       });
     },
-    setDoxMes: ({commit}) => {
+    setDoxMes: ({commit}) => {commit('THREELOAD', true );
       axios.get('/doxodmeses')
-      .then((response) =>{
+      .then((response) =>{ commit('THREELOAD', false );
         commit('DOXODMESES', response.data )
       });
     },
-    setDoxMes30: ({commit}) => {
+    setDoxMes30: ({commit}) => {commit('THREELOAD', true );
       axios.get('/doxodmeses30')
-      .then((response) =>{
+      .then((response) =>{commit('THREELOAD', false );
         commit('DOXODMESES', response.data )
       });
     },

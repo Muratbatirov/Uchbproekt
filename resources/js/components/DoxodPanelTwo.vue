@@ -16,7 +16,7 @@
                     
                   </div>
               </div>
-               <div class="card-body">
+               <div class="card-body releative">
               <div class="row">
                    <div class="col-md-12 ">
                     <table  name="slide-fade" is="transition-group">
@@ -36,7 +36,7 @@ v-on:click.stop.prevent="udalit"><font-awesome-icon  :icon = "['fas', 'trash']"/
                    </div>
                    
           </div> 
-                  
+            <load-component v-show="twoload"></load-component>        
                    
        </div>
 
@@ -48,7 +48,7 @@ v-on:click.stop.prevent="udalit"><font-awesome-icon  :icon = "['fas', 'trash']"/
 </template>
 
 <script>
-	
+	import LoadComponent from './LoadComponent'
 
  
 export default {
@@ -104,19 +104,27 @@ export default {
  
                
       components: {
-                 
+                 LoadComponent
                   },
       computed: { 
                 
                deystviy(){
                return this.$store.getters.deystviy;
-               } 
+               } ,
+               twoload(){
+                             return this.$store.getters.twoload;
+
+                },
                 
                 }
               }
 </script>
 <style scoped>
- 
+ .releative{
+  position: relative;
+  overflow: hidden;
+
+ }
 .marg{
   padding: 20px;
 }
@@ -153,6 +161,7 @@ table{
 }
 .card{
   height: 100%;
+  overflow: hidden;
 }
 .number{
   padding: 30px;
@@ -165,11 +174,12 @@ table{
    }
  
  }
- .slide-fade-enter-active {
-  transition: all 1s ease;
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-leave-active {
-  transition: all 1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active до версии 2.1.8 */ {

@@ -26,11 +26,7 @@
               <div class="row">
                    <div class="col-md-12 padtop">
                         <bar-chart :chart-data="datachart" :height="500"  :options="options" >
-                                      </bar-chart><div v-show="load" class="load"><div class="spinner">
-                                              <div class="bounce1"></div>
-                                              <div class="bounce2"></div>
-                                              <div class="bounce3"></div>
-                                            </div></div></div>
+                                      </bar-chart><load-component v-show="threeload"></load-component>
                    </div>
                  
           </div> 
@@ -49,12 +45,13 @@
 
 <script>
 	import BarChart from './BarChart.js'
+  import LoadComponent from './LoadComponent'
 
 export default {
       data: function(){
                       return { 
                               rad: 10,
-                              load: false,
+                             
                           
                              chartdata: {
       labels: ['Январь', 'Февраль','Февраль'],
@@ -100,19 +97,19 @@ export default {
 
             rad: function(newval, oldval){
                           if(newval == 30){
-                             this.load =true;
+                             this.$store.commit( 'THREELOAD', true);
                              this.$store.commit( 'STATE30');
 
                              setTimeout(()=> this.$store.dispatch('setDoxMes30'),1000);
-                             setTimeout(()=> this.load =false,1000);
+                          
                             
          
                           }
                           else{
-                            this.load =true;
+                          this.$store.commit( 'THREELOAD', true);
                             this.$store.commit( 'STATE10');
                             setTimeout(()=> this.$store.dispatch('setDoxMes'),1000);
-                           setTimeout(()=> this.load =false,1000);
+                         
                           }
                           
             }
@@ -129,11 +126,17 @@ export default {
                },
       components: {
                 
-                 BarChart
+                 BarChart,
+                 LoadComponent
                   },
       computed: { 
                 doxodmeses(){
                              return this.$store.getters.doxodmeses;
+
+
+                },
+                threeload(){
+                             return this.$store.getters.threeload;
 
 
                 },
@@ -182,18 +185,7 @@ export default {
  margin-right: -5px;
  margin-left: -5px;
  }
- .load{
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  
-  background-color: #c5c7c5;
-  opacity: 0.5;
-  overflow: auto;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
- }
+ 
  .padtop{
   padding-top: 20px
  }
@@ -203,41 +195,7 @@ export default {
   text-align: center;
 }
 
-.spinner > div {
-  width: 50px;
-  height: 50px;
-  background-color: #333;
 
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-}
-
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
-
-@-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0) }
-  40% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes sk-bouncedelay {
-  0%, 80%, 100% { 
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 40% { 
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-  }
-}
  .conta {
   display: inline;
   position: relative;

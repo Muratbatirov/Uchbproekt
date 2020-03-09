@@ -19,8 +19,8 @@
                     
                   </div>
               </div>
-               <div class="card-body">
-              <div class="row">
+               <div class="card-body releative ">
+              <div class="row ">
                    <div class="col-md-4">
                          <div class="row">
                           <div class="col-md-12 text-center number">
@@ -57,9 +57,10 @@
        
                        </div>
                   </div>
+                   <load-component v-show="oneload"></load-component>   
           </div> 
                   
-                   
+               
        </div>
            <doxod-modal v-show="modaldoxod"></doxod-modal>
           
@@ -79,6 +80,7 @@
   import BarHorizon from './BarHorizon.js' 
   import InputDoxod from './InputDoxod'
   import DoxodModal from './DoxodModal'
+  import LoadComponent from './LoadComponent'
  
 export default {
       data: function(){
@@ -224,8 +226,13 @@ export default {
                  InputDoxod,
                  DoxodModal,
                BarHorizon,
+               LoadComponent
                   },
       computed: { 
+                oneload(){
+                             return this.$store.getters.oneload;
+
+                },
                 sumdaxod () {
                             return this.$store.getters.daxod;
                             },
@@ -307,6 +314,10 @@ export default {
               }
 </script>
 <style scoped>
+.releative{
+  position: relative;
+
+ }
  
 .marg{
   padding: 20px;
