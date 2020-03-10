@@ -36,7 +36,7 @@
     
        
         mounted() {
-            console.log('Component mounted global')
+           
         },
         methods: {
           

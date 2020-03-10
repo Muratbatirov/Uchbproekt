@@ -58,3 +58,4 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
 });
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/balans', 'BalansController@balans');

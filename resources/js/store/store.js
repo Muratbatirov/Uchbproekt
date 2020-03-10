@@ -2,13 +2,15 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import kirim from './modules/kirim';
 import rasxod from './modules/rasxod';
+import balans from './modules/balans';
 Vue.use(Vuex);
 
 
 export const store = new Vuex.Store({
   modules: {
     kirim,
-    rasxod
+    rasxod,
+    balans
   },
   state: {
     balans: 0,

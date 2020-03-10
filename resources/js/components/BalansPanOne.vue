@@ -45,17 +45,29 @@
  
 
     export default {
-    
+          data() {
+    return {
+          
+
+     
+    }
+  },
        
         mounted() {
-            console.log('Component mounted global')
+             this.$store.dispatch('setBalans');
         },
         methods: {
           
+       
 
+        },
+        computed:{
+
+         balans(){
+           return this.$store.getters('balans');
+         }
 
         }
-
 
     }
 </script>
@@ -69,6 +81,8 @@
          justify-content: center;
         flex-direction:  column;
           align-items: center;
+          padding-bottom: 10px;
+
        
         
      
@@ -101,11 +115,11 @@
    .nalichnie {
   color: #38C172;
   font-weight: 600;
-  font-size: 300%;
+  font-size: 250%;
     }
     .plastik{
       font-weight: 600; 
-       font-size: 300%; 
+       font-size: 250%; 
     }
 .btn-primary{
     margin-top: 10px;
