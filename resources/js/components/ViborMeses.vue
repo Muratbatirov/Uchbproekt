@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-10 ">
       <div class="flexcompon">
-      <a class="slider__control slider__control_left slider__control_show" href="#"  role="button" v-on:click.stop.prevent="left"></a>
+      <a v-bind:class="{ disabled: oneload }" class="slider__control slider__control_left slider__control_show" href="#"  role="button" v-on:click.stop.prevent="left"></a>
          <div class="slider">
               <div class="slider__wrapper ">
                    <div v-for="item in mesesi" class="slider__item">
@@ -14,7 +14,7 @@
             
          </div>
            
-             <a class="slider__control slider__control_right slider__control_show" href="#" role="button" v-on:click.stop.prevent="right"></a>  
+             <a v-bind:class="{ disabled: oneload }" class="slider__control slider__control_right slider__control_show" href="#" role="button" v-on:click.stop.prevent="right"></a>  
              </div>    
      </div>
 </template>
@@ -89,7 +89,10 @@ export default {
                 
                   },
       computed: {    
+                    oneload(){
+                             return this.$store.getters.oneload;
 
+                },
                 }
               }
 </script>
@@ -116,7 +119,7 @@ transition: transform 0.4s ease-in;
       flex: 0 0 100%;
       display: flex;
       max-width: 100%;
-      justify-content: space-around;
+      justify-content: space-between;
     }
 
     .slider__control {
@@ -150,7 +153,10 @@ transition: transform 0.4s ease-in;
        
       
     }
-
+ .disabled {
+        pointer-events: none;
+        cursor: default;
+    }
     .slider__control_right {
      
     }
