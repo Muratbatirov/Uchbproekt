@@ -56,6 +56,12 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
 
     });
 });
+
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('/balans', 'BalansController@balans');
+Route::get('/daxtoolcat', 'ToolsController@daxtoolcat');
+Route::post('/catdoxod', 'ToolsController@catdoxod');
+Route::post('/catdoxred', 'ToolsController@catdoxred');
+Route::post('/catredmat', 'ToolsController@catredmat');
+Route::post('/udaltooldox', 'ToolsController@udaltooldox');

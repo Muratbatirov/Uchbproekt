@@ -10,27 +10,30 @@
            
                
                    <div class="col-md-4  border-top border-bottom">
-                        <span>Nalichnie</span>  
+                        <span>{{balans[0].vid}}</span>  
                         <div class="flexitem">
-                         <button  class="btn btn-success btn-circle disabl "><font-awesome-icon  :icon = "['fas', 'wallet']"/></button>    <span class="nalichnie">100000 </span></div> 
+                         <button  class="btn btn-success btn-circle disabl "><font-awesome-icon  :icon = "['fas', 'wallet']"/></button>    <span class="nalichnie">{{balans[0].summa}} </span></div> 
                    </div>
                  <div class="col-md-4  border-top border-bottom">
-                        <span>Nalichnie</span>  
+                        <span>{{balans[1].vid}}</span>  
                          <div class="flexitem">
-                         <button  class="btn  btn-circle disabl colorbutt"><font-awesome-icon  :icon = "['fas', 'credit-card']"/></button>    <span class="plastik">100000 </span></div> 
+                         <button  class="btn  btn-circle disabl colorbutt"><font-awesome-icon  :icon = "['fas', 'credit-card']"/></button>    <span class="plastik">{{balans[1].summa}} </span></div> 
                    </div>
                    <div class="col-md-4  border-top border-bottom">
-                        <span>Nalichnie</span>  
+                        <span>{{balans[2].vid}}</span>  
                          <div class="flexitem">
-                         <button  class="btn  btn-circle disabl colorbutt disabl "><font-awesome-icon  :icon = "['fas', 'credit-card']"/></button>    <span class="plastik">100000 </span></div> 
+                         <button  class="btn  btn-circle disabl colorbutt disabl "><font-awesome-icon  :icon = "['fas', 'credit-card']"/></button>    <span class="plastik">{{balans[2].summa}}</span></div> 
                    </div>
                   
               
           
-         </div>     
+         </div>   
+         <transition name="height">
+         <dop-plastik v-show="dopplastik"></dop-plastik>
+         </transition>
          <div class="row">
                <div class="col-md-4 center offset-md-4">
-               <button class="btn btn-primary ">Pokazat vse</button>
+               <button v-on:click.prevent="dopplastik= !dopplastik"class="btn btn-primary "><span v-show="!dopplastik">Pokazat vse</span><span v-show="dopplastik">&nbsp &nbsp Zakrit &nbsp &nbsp</span> </button>
                </div>
           </div>
     
@@ -40,31 +43,34 @@
 
 <script>
 	
-
+import DopPlastik from './DopPlastik'
 
  
 
     export default {
           data() {
     return {
-          
+          dopplastik:false,
 
      
     }
   },
        
         mounted() {
-             this.$store.dispatch('setBalans');
+            
         },
         methods: {
           
        
 
         },
+        components:{
+            DopPlastik
+        },
         computed:{
 
          balans(){
-           return this.$store.getters('balans');
+           return this.$store.getters.balans;
          }
 
         }
@@ -72,10 +78,15 @@
     }
 </script>
 <style scoped>
+   .height-enter-active, .height-leave-active {
+  transition: all 0.8s;
+  max-height: 230px;
+}
+.height-enter, .height-leave-to {
+ opacity: 0;
+  max-height: 0px;
+}
    
-    .card{
-        padding: 15px;
-    }
    .border-top{
         display: flex;
          justify-content: center;
@@ -103,6 +114,9 @@
     
 
 }
+.card{
+        padding: 15px;
+    }
 .flexitem{
     display: flex;
      

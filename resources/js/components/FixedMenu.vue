@@ -21,7 +21,7 @@
       <li id="lin2"  class="li"><a href="" @click.prevent="daxod">Доходы</a></li>
       <li id="lin3" class="li"><a href="" @click.prevent="rasxod">Расходы</a></li>
       <li id="lin4" class="li"><a href="" @click.prevent="otchet">Отчеты</a></li>
-      <li id="lin5"  class="liposled nastr" ><a href="" @click.prevent="otchet">Настройки</a></li>
+      <li id="lin5"  class="liposled nastr" ><a href="" @click.prevent="nastroy">Настройки</a></li>
      
       <li id="linya"  class="li linya" ><a >&nbsp</a></li>
     </ul>
@@ -124,6 +124,9 @@ import "vue-essential-transitions";
           otchet(){
             this.$router.push({ name: 'otchet' })
           },
+          nastroy(){
+            this.$router.push({ name: 'tools' })
+          },
           dlinalinii(linya, linId1, linId2){
             let linya_1 = document.getElementById(linId1);
             let linya_2 = document.getElementById(linId2);  
@@ -149,11 +152,24 @@ import "vue-essential-transitions";
            let coords = navmenyu.getBoundingClientRect();
            chiziq.style.left =  coords.left - document.getElementById("lin1").getBoundingClientRect().left  + "px" ;
           }
-          else {
-            let navmenyu = document.getElementById("lin3");
+          else if(this.$route.name == 'rasxod') {
+           let navmenyu = document.getElementById("lin3");
           let chiziq = document.getElementById("linya");
            let coords = navmenyu.getBoundingClientRect();
-            chiziq.style.left =  coords.left - document.getElementById("lin1").getBoundingClientRect().left  + "px" ;
+           chiziq.style.left =  coords.left - document.getElementById("lin1").getBoundingClientRect().left  + "px" ;
+          }
+          else if(this.$route.name == 'otchet') {
+           let navmenyu = document.getElementById("lin4");
+          let chiziq = document.getElementById("linya");
+           let coords = navmenyu.getBoundingClientRect();
+           chiziq.style.left =  coords.left - document.getElementById("lin1").getBoundingClientRect().left  + "px" ;
+          }
+
+          else {
+            let navmenyu = document.getElementById("lin5");
+          let chiziq = document.getElementById("linya");
+           let coords = navmenyu.getBoundingClientRect();
+            chiziq.style.left = 10+ coords.left - document.getElementById("lin1").getBoundingClientRect().left  + "px" ;
           }
         },
 

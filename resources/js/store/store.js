@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 import kirim from './modules/kirim';
 import rasxod from './modules/rasxod';
 import balans from './modules/balans';
+import tool from './modules/tool';
+
 Vue.use(Vuex);
 
 
@@ -10,28 +12,30 @@ export const store = new Vuex.Store({
   modules: {
     kirim,
     rasxod,
-    balans
+    balans,
+    tool
   },
   state: {
-    balans: 0,
+   
     compshow: false,
     categorya: {},
-    modaldoxod:false
+    modaldoxod:false,
+    modaltool:false
   },
   getters: {
-    summa: state => {
-      return state.balans;},
+   
     componshow: state => {
       return state.compshow;},
     kategorya: state => {
      return state.categorya;},
      modaldoxod: state => {
      return state.modaldoxod;},
+    
+    modaltool: state => {
+     return state.modaltool;},
     },
   mutations: {
-    'SET_STORE' (state, balans) {
-      state.balans = balans;
-    },
+   
     'COMP_SHOW' (state) {
       state.compshow = !state.compshow;
     },
@@ -40,7 +44,10 @@ export const store = new Vuex.Store({
     },
     'MODAL_DOXOD' (state) {
       state.modaldoxod = ! state.modaldoxod;
-    }
+    },
+    'MODAL_TOOL' (state) {
+      state.modaltool = ! state.modaltool;
+    },
   },
   actions: {
   initStore: ({commit}) => {

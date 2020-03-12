@@ -4,6 +4,7 @@ import HomeBalans from './Components/HomeBalans';
 import HomeDaxod from './Components/HomeDaxod';
 import HomeRasxod from './Components/HomeRasxod';
 import HomeOtchet from './Components/HomeOtchet';
+import HomeTools from './Components/HomeTools';
 
 export default new VueRouter({
 	routes : [
@@ -20,7 +21,10 @@ export default new VueRouter({
           component: HomeRasxod},
           {path: 'balans',
           name: 'balans',
-          component: HomeBalans}
+          component: HomeBalans},
+          {path: 'tools',
+          name: 'tools',
+          component: HomeTools}
 
 
 

@@ -24,7 +24,7 @@ class BalansController extends Controller
     
     public function balans()
     {
-     $balans = Balans::where('user_id', 1)->select('vid', 'summa')->limit(3)->orderBy('id')->get()->toJson();
+     $balans = Balans::where('user_id', 1)->select('vid', 'summa')->limit(5)->orderBy('id')->get()->toJson();
 
 
 

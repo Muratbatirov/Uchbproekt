@@ -36,7 +36,7 @@
     
        
         mounted() {
-           
+           this.$store.dispatch('setBalans');
         },
         methods: {
           
