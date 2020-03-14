@@ -7,8 +7,8 @@
             <a href="#" title="Close" class="close" v-on:click.stop.prevent="modaltool">×</a>
           </div>
           <div class="modal-body">
-            <input-tool-dox v-show="inputtooldax"></input-tool-dox>
            
+            <input-tool-ras ></input-tool-ras>
           </div>
         </div>
       </div>
@@ -16,16 +16,16 @@
 </template>
 
 <script>
-	import InputToolDox from './InputToolDox'
- 
+	
+  import InputToolRas from './InputToolRas'
 
 
  
 
     export default {
      components: {
-       InputToolDox,
-      
+       
+       InputToolRas
      },
        
         mounted() {
@@ -33,21 +33,21 @@
         },
         methods: {
            modaltool(){
-            this.$store.commit('MODAL_TOOL');
+           
              this.$store.commit('NOTCATDOXRED');
-             this.$store.commit('INPUTTOOLDAX' , false);
+             
              this.$store.commit('INPUTTOOLRAS' , false);
-             this.$store.dispatch('DaxToolCat');
+             this.$store.dispatch('RasToolCat');
             
 
         },
           modaltoolzak: function (event){
              if (!event.target.closest('.modal-dialog')) {
-                 this.$store.commit('MODAL_TOOL');
+                
                  this.$store.commit('NOTCATDOXRED');
-                 this.$store.commit('INPUTTOOLDAX' , false);
+                 
                   this.$store.commit('INPUTTOOLRAS' , false);
-                this.$store.dispatch('DaxToolCat');
+                this.$store.dispatch('RasToolCat');
                  
              }
           }

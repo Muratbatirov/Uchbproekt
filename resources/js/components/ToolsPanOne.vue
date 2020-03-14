@@ -31,7 +31,7 @@
                                      <tr  v-for="(item, index) in daxtoolcat" :key="item.id" >
                                        
                                        <td  class="tablwidth">{{index +1}}&nbsp {{item.nomi}}</td><td ><a :catdoxid="item.id" class="pencil" href="#" 
-v-on:click.stop.prevent="redak"><font-awesome-icon  :icon = "['fas', 'pencil-alt']"/></a></td><td > <a  :catuid="item.id"class="delete" href="#" 
+v-on:click.stop.prevent="redakt"><font-awesome-icon  :icon = "['fas', 'pencil-alt']"/></a></td><td > <a  :catuid="item.id"class="delete" href="#" 
 v-on:click.stop.prevent="udalit"><font-awesome-icon  :icon = "['fas', 'trash']"/></a></td>
                                 
                                       </tr>
@@ -48,7 +48,7 @@ v-on:click.stop.prevent="udalit"><font-awesome-icon  :icon = "['fas', 'trash']"/
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title">Preduprejdenie</h3>
-            <a href="#" title="Close" class="close" v-on:click.stop.prevent="udalitmod=false">×</a>
+            <a href="#" title="Close" class="close" v-on:click.stop.prevent="zakritclick">×</a>
           </div>
           <div class="modal-body">
             <h1>Все связанные доходы будет удален</h1><br>
@@ -99,9 +99,17 @@ export default {
                  zakrit: function (event){
              if (!event.target.closest('.modal-dialog')) {
                  this.udalitmod=false;
+                 
              }},
+              zakritclick:function (){
+            
+                 
+                 this.udalitmod=false;
+             },
                  modalcat(){
-                         this.$store.commit('MODAL_TOOL')
+                         this.$store.commit('INPUTTOOLDAX' , true);
+                        
+
                  },
 
                 udalit: function(event){
@@ -121,12 +129,13 @@ export default {
                                })
                    },
 
-               redak: function(event) {
+               redakt: function(event) {
                       let catdoxid =event.currentTarget.getAttribute("catdoxid");
                       
                        this.$store.commit('CATDOXID', catdoxid);
                        this.$store.commit('CATDOXRED');
-                       this.$store.commit('MODAL_TOOL');
+                      this.$store.commit('INPUTTOOLDAX' , true);
+                    
                        
                       
                   }
@@ -149,13 +158,14 @@ export default {
 
                 },
                 modaltool(){
-                             return this.$store.getters.modaltool;
+                             return this.$store.getters.inputtooldax;
 
                 },
                  daxcatid(){
                              return this.$store.getters.daxcatid;
 
                 },
+               
                 
                 }
               }

@@ -1,51 +1,25 @@
 <template>
   <div class="container"> 
     <div class="releativ">
-            <form id="qo" @submit.prevent="qosh">
+            <form id="qosh" @submit.prevent="catdox">
                <div class="row border">
                 
                 <div class="col-md-12">
               <div class="form-group">
-                      <label for="balan" >Summa</label>   
-                      <input id="balan" type="number" class="form-control" name="balans" v-model="balans" required autofocus>        
+                      <label for="nomi" >Nomi rasxod</label>   
+                      <input id="nomi"  class="form-control" name="nomi" v-model="nomi" required autofocus>        
                      
              </div>
            </div>
-           <div class="col-md-12">
-             <div class="form-group">
-                    <label for="datadaxcateg">Example select</label>
-                    <select class="form-control" id="datadaxcateg" v-model="datadaxcateg">
-                           <option disabled value="">Источник</option>
-                           <option v-for="state in datadax" v-bind:value="state.nomi">
-                               {{state.nomi}}</option>
-                              
-                    </select>
-             </div>
-            </div>
+           
             
            
-           <div class="col-md-12">
-           <div class="form-group">
-                    <label for="rasmesto">Example select</label>
-                   
-                    <select class="form-control" id="rasmesto" v-model="mesto">
-                           <option disabled value="">Mesto xranenie</option>
-                           <option v-for="state in datamesto" v-bind:value="state.vid">
-                               {{state.vid}}</option>
-                              
-                    </select>
-             </div>
-           </div>
-           <div class="col-md-12">
-             <label for="data" >Vremya</label>  
-             <div id="data"  clas="form-group datapadding" >
-             <date-picker v-model="time2"  type="datetime" :open="open" :lang="lang" ></date-picker><a class="picker" v-on:click.stop.prevent="openpicker" href="#">x</a>
-             </div>
-           </div>
+           
+           
             
           <div class="col-md-6 form-group">
-                                 <label for="submit" >&nbsp</label>  
-                                <button :disabled="load"  type="submit" id="submit" class="  form-control btn btn-primary">
+                                 <label for="submitbut" >&nbsp</label>  
+                                <button :disabled="load"  type="submit" id="submitbut" class="  form-control btn btn-primary">
                                     Junatish <div class="inlineblo"><font-awesome-icon v-show="spinner" icon="spinner" class="fa-spin"  /></div>
                                 </button>
 
@@ -80,30 +54,15 @@ dom.watch()
 export default {
       data: function(){
                       return {
-                              balans: 0,
+                              nomi: "",
                               kuting: "",
                               load: false,
                               spinner: false,
                               probel: " ",
-                              datadaxcateg: "",
-                              mesto:"",
-                              time2: null,
+                              
                               loadmodal: false,
                               open:null,
-                               lang: {
-                                       formatLocale: {
-                                        months: ['Январь', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    
-                                            monthsShort: ['Янв', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  
-                                            weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  
-                                            weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  
-                                            weekdaysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                                                      },
-                                        monthBeforeYear: false,
-                                   },
+                               
                              
                              }         
                        },
@@ -120,11 +79,11 @@ export default {
                
                },
       methods: {
-                qosh: function() { 
-                                  if(!this.redakt){
+                catdox: function() { 
+                                  if(!this.catdoxred){
 
                               this.load=true; this.spinner=true;
-                                  axios.post('/qoshish', {balans:this.balans, nomi:this.datadaxcateg, time: this.time2, mesto:this.mesto}).then(re => {
+                                  axios.post('/catrasxod', {nomi:this.nomi}).then(re => {
                                this.spinner=false;    
                                this.load=false;
                                
@@ -132,7 +91,7 @@ export default {
                                 })} 
                                 else {
                                   this.load=true; this.spinner=true;
-                                  axios.post('/qoshishred', {balans:this.balans, nomi:this.datadaxcateg, time: this.time2, mesto:this.mesto, id:this.doxid}).then(re => {
+                                  axios.post('/catrasred', {nomi:this.nomi, id:this.catdoxid}).then(re => {
                                this.spinner=false;    
                                this.load=false;  })}
 
@@ -150,32 +109,32 @@ export default {
       components: {
                   DatePicker,
                   },
-      watch: { 
-                redakt(){
-                          if(this.redakt){
+                  watch: { 
+                catdoxred(){
+                          if(this.catdoxred){
                  this.loadmodal=true;
                
-                 axios.post('/redakt', {doxid: this.doxid}).then(re => {
-                               this.loadmodal=false;    
-                               this.balans = re.data.summa;
-                               this.datadaxcateg =re.data.nomi;
-                               this.mesto = re.data.mesto;
-                             
+                 axios.post('/catredmatras', {catdoxid: this.catdoxid}).then(re => {
+                                this.loadmodal=false; 
+                               this.nomi = re.data.nomi;
 
                                 })}
+                  else{
+                 this.nomi = "";
+               
+                }
                },
 
 
-                modalwatch(){
-                  if(!this.redakt){
-                               this.balans=0;
-                               this.datadaxcateg=null;
-                               this.time2=null;
-                               this.mesto = null;
+                toolmodwatcht(){
+                  if(!this.catdoxred){
+                               this.nomi="";
+                              
                                 this.spinner=false; 
                                 this.load=false;}
                 }
       },
+     
       computed: {
                 datadax () {
                            return this.$store.getters.datadax;
@@ -183,14 +142,14 @@ export default {
                 datamesto () {
                            return this.$store.getters.datamesto;
                            }, 
-                modalwatch(){
-                    return this.$store.getters.modaldoxod;
+                toolmodwatch(){
+                    return this.$store.getters.modaltool;
                 },
-                redakt(){
-                return  this.$store.getters.redakt;
+                catdoxred(){
+                return   this.$store.getters.catdoxred;
                 },
-                doxid(){
-                  return this.$store.getters.doxid;
+                catdoxid(){
+                  return this.$store.getters.catdoxid;
                 },
                
 

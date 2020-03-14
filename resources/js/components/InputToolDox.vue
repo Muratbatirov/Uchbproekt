@@ -6,8 +6,8 @@
                 
                 <div class="col-md-12">
               <div class="form-group">
-                      <label for="nomi" >Nomi</label>   
-                      <input id="nomi"  class="form-control" name="nomi" v-model="nomi" required autofocus>        
+                      <label for="nomii" >Nomi</label>   
+                      <input id="nomii"  class="form-control" name="nomi" v-model="nomi" required autofocus>        
                      
              </div>
            </div>
@@ -54,7 +54,7 @@ dom.watch()
 export default {
       data: function(){
                       return {
-                              nomi: "noo",
+                              nomi: "",
                               kuting: "",
                               load: false,
                               spinner: false,
@@ -75,12 +75,12 @@ export default {
 
              
       mounted(){
-              
+             
                
                },
       methods: {
                 catdox: function() { 
-                                  if(!this.catdoxred){
+                                  if(!this.catdoxredd){
 
                               this.load=true; this.spinner=true;
                                   axios.post('/catdoxod', {nomi:this.nomi}).then(re => {
@@ -110,19 +110,23 @@ export default {
                   DatePicker,
                   },
       watch: { 
-                catdoxred(){
-                          if(this.catdoxred){
+                catdoxredd(){
+                          if(this.catdoxredd){
                  this.loadmodal=true;
                
                  axios.post('/catredmat', {catdoxid: this.catdoxid}).then(re => {
-                               this.loadmodal=false;    
+                                this.loadmodal=false; 
                                this.nomi = re.data.nomi;
 
                                 })}
+                  else{
+                 this.nomi = "";
+               
+                }
                },
 
 
-                toolmodwatch(){
+                toolmodwatcht(){
                   if(!this.catdoxred){
                                this.nomi="";
                               
@@ -137,10 +141,10 @@ export default {
                 datamesto () {
                            return this.$store.getters.datamesto;
                            }, 
-                toolmodwatch(){
+                toolmodwatcht(){
                     return this.$store.getters.modaltool;
                 },
-                catdoxred(){
+                catdoxredd(){
                 return   this.$store.getters.catdoxred;
                 },
                 catdoxid(){

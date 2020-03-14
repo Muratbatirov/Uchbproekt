@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\DaxCategor;
+use App\RasCategor;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -26,10 +27,21 @@ class ToolsController extends Controller
     {
      $daxtoolcat = DaxCategor::where('user_id', 1)->select('id', 'nomi')->orderBy('id')->get()->toJson();
 
-
-
+       
+ 
 
             return $daxtoolcat;
+          
+   
+    }
+    public function rastoolcat()
+    {
+     $rastoolcat = RasCategor::where('user_id', 1)->select('id', 'nomi')->orderBy('id')->get()->toJson();
+
+        
+      
+
+            return $rastoolcat;
           
    
     }
@@ -37,6 +49,17 @@ public function catdoxod(Request $request)
     {
       $nomi = $request->get('nomi');   
            $categ = new DaxCategor;
+
+    $categ->nomi = $nomi;
+    $categ->user_id = 1;
+
+    $categ->save();
+   
+   }
+   public function catrasxod(Request $request)
+    {
+      $nomi = $request->get('nomi');   
+           $categ = new RasCategor;
 
     $categ->nomi = $nomi;
     $categ->user_id = 1;
@@ -53,11 +76,28 @@ public function catdoxod(Request $request)
       $daxcategor->save();
           
    }
+   public function catrasred(Request $request)
+    {
+      $nomi = $request->get('nomi');
+      $id =   $request->get('id'); 
+     $daxcategor= RasCategor::where('id', $id)->first();
+      $daxcategor->nomi=$nomi;
+      $daxcategor->save();
+          
+   }
    public function catredmat(Request $request)
     {
       $id = $request->get('catdoxid');
       
      $daxcategor= DaxCategor::where('id', $id)->first();
+      return $daxcategor;
+          
+   }
+   public function catredmatras(Request $request)
+    {
+      $id = $request->get('catdoxid');
+      
+     $daxcategor= RasCategor::where('id', $id)->first();
       return $daxcategor;
           
    }
@@ -68,6 +108,12 @@ public function udaltooldox(Request $request)
         $res->daxod()->delete(); 
          $res->delete();
    }
-
+public function udaltoolras(Request $request)
+    {
+       $catdoxid = $request->get('id');  
+      $res =RasCategor::where('id',$catdoxid)->first();
+        $res->rasxod()->delete(); 
+         $res->delete();
+   }
 
   }

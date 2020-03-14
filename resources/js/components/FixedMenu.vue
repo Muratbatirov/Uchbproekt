@@ -99,6 +99,7 @@ import "vue-essential-transitions";
             
             let chiz = document.getElementById("linya");
            this.dlinalinii(chiz, "lin1", "lin2");
+           $(window).resize(this.linya)
         },
         watch:{
     $route (to, from){
