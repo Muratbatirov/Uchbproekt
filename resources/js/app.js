@@ -29,8 +29,10 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import { faWallet } from '@fortawesome/free-solid-svg-icons'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 library.add(faSpinner,faMoneyBill,faArrowRight, faArrowLeft, faTools,faSignOutAlt,
-	faArrowsAltH,faPlus, faTrash,faPencilAlt, faCircleNotch,faWallet ,faCreditCard )
+	faArrowsAltH,faPlus, faTrash,faPencilAlt, faCircleNotch,faWallet ,faCreditCard,faPlusCircle,faMinusCircle )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 import { store } from './store/store';
 
