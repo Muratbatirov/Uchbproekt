@@ -41,7 +41,7 @@ v-on:click.stop.prevent="udalit"><font-awesome-icon  :icon = "['fas', 'trash']"/
                    </div>
                    
           </div> 
-            <load-component v-show="tooldoxload"></load-component>   
+            <load-component v-show="toolrasload"></load-component>   
             <modal-tool-ras v-show="modaltool"></modal-tool-ras> 
             <div v-show="udalitmod"  class="modalOkna" v-on:click="zakrit">
       <div class="modal-dialog">
@@ -151,8 +151,8 @@ export default {
                rastoolcat(){
                return this.$store.getters.rastoolcateg;
                } ,
-               tooldoxload(){
-                             return this.$store.getters.tooldoxload;
+               toolrasload(){
+                             return this.$store.getters.toolrasload;
 
                 },
                 modaltool(){

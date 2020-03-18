@@ -40,38 +40,38 @@
                                <th>Actions</th>
                               </tr>
                             </thead>  
-                            <tbody name="slide-fade" is="transition-group">
+                            <tbody >
                         
-                                     <tr  v-for="(item, index) in daxtoolcat" :key="item.id" >
+                                     <tr  v-for="(item, index) in daxtoolcatpag" >
                                        <td>
                                         <span class="custom-checkbox">
                                           <input type="checkbox" :id="index" name="options[]" :value="index+1">
                                             <label :for="index"></label>
                                         </span>
                                       </td>
-                                       <td >{{index +1}}&nbsp {{item.nomi}}</td><td ><a :catdoxid="item.id" class="pencil" href="#" 
+                                       <td >{{index +1+daxskip*5}}&nbsp {{item.nomi}}</td><td ><a :catdoxid="item.id" class="pencil" href="#" 
 v-on:click.stop.prevent="redakt"><font-awesome-icon  :icon = "['fas', 'pencil-alt']"/></a>&nbsp &nbsp<a  :catuid="item.id"class="delete" href="#" 
 v-on:click.stop.prevent="udalit"><font-awesome-icon  :icon = "['fas', 'trash']"/></a></td>
                                 
                                       </tr>
                            </tbody>
-                                     </transition-group>
+                                    
                                   
                       </table>
                       <div class="clearfix">
                            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                            <ul class="pagination">
-                               <li class="page-item disabled"><a href="#">Previous</a></li>
-                               <li v-for="item in massiv" :key="item[index]" class="page-item"><a href="#" class="page-link">{{item+1}}</a></li>
+                               <li class="page-item"><a href="#">Previous</a></li>
+                               <li v-for="(item, index) in massiv" :key="item[index]" class="page-item"><a href="#" v-on:click.stop.prevent="daxpagin" :daxskip="index"  class="page-link">{{item+1}}</a></li>
                                
                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
                            </ul>
                      </div>
         </div>
                    </div>
-                   
+                 <load-component v-show="tooldoxload"></load-component>   
           </div> 
-            <load-component v-show="tooldoxload"></load-component>   
+              
             <modal-tool v-show="modaltool"></modal-tool> 
             <div v-show="udalitmod"  class="modalOkna" v-on:click="zakrit">
       <div class="modal-dialog">
@@ -108,6 +108,7 @@ export default {
                       return { 
                          
                        udalitmod: false,
+
                             
             }
                              
@@ -119,6 +120,7 @@ export default {
                 },
       mounted(){
                this.$store.dispatch('DaxToolCat')
+               this.$store.dispatch('DaxToolCatPag')
              
                },
       watch: {
@@ -151,11 +153,30 @@ export default {
                     let id =event.currentTarget.getAttribute("catuid")
                  this.$store.commit('DAXCATID', id);
                    },
+                   daxpagin: function(event){
+                    let ul = document.querySelector('.pagination');
+                     
+                    let vseli = ul.getElementsByTagName('li');
+                      
+                   for (let i = 0; i <vseli.length; i++) {
+                              if(vseli[i].classList.contains('active')) {
+                                vseli[i].classList.remove('active');
+
+                    }
+                                  }
+                                       
+                      let skip =event.currentTarget.getAttribute("daxskip");
+                      let litar=  event.currentTarget.parentNode;
+                 litar.classList.add('active');
+                   litar.blur()
+                 this.$store.commit('DAXSKIP', skip);
+                 this.$store.dispatch('DaxToolCatPag')
+                   },
                    udalmod(){
                     axios.post('/udaltooldox', {id:this.daxcatid}).then(re => {
                       this.udalitmod=false;
                             this.$store.dispatch('DaxToolCat');
-                              
+                             this.$store.dispatch('DaxToolCatPag'); 
 
                                })
                    },
@@ -204,6 +225,14 @@ export default {
                            return  massiv; 
 
                 },
+                daxtoolcatpag(){
+                  return this.$store.getters.daxtoolcatpag;
+                },
+                daxskip(){
+                  return this.$store.getters.daxskip;
+                },
+              
+
                
                 
                 }
@@ -283,17 +312,7 @@ table.table-striped.table-hover tbody tr:hover {
  
  }
 
-.slide-fade-leave-active {
-  transition: all 0.3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-leave-active {
-  transition: all 0.3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active до версии 2.1.8 */ {
-  transform: translateX(20px);
-  opacity: 0;
-}
+
   /* Custom checkbox */
   .custom-checkbox {
     position: relative;
@@ -367,8 +386,12 @@ table.table-striped.table-hover tbody tr:hover {
         color: #666;
     } 
     .pagination li.active a, .pagination li.active a.page-link {
-        background: #03A9F4;
+        background: #03A9F4; 
     }
+   ul:focus {
+      outline: none !important;
+    }
+
     .pagination li.active a:hover {        
         background: #0397d6;
     }
@@ -384,7 +407,9 @@ table.table-striped.table-hover tbody tr:hover {
         margin-top: 10px;
         font-size: 13px;
     }   
-
+ .page-link:focus {
+  box-shadow: none;
+}
 
  .modalOkna {
       position: fixed;

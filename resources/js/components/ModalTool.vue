@@ -38,6 +38,7 @@
              this.$store.commit('INPUTTOOLDAX' , false);
              this.$store.commit('INPUTTOOLRAS' , false);
              this.$store.dispatch('DaxToolCat');
+              this.$store.dispatch('DaxToolCatPag');
             
 
         },
@@ -48,6 +49,7 @@
                  this.$store.commit('INPUTTOOLDAX' , false);
                   this.$store.commit('INPUTTOOLRAS' , false);
                 this.$store.dispatch('DaxToolCat');
+                 this.$store.dispatch('DaxToolCatPag');
                  
              }
           }

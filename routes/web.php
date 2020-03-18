@@ -62,6 +62,7 @@ Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('/balans', 'BalansController@balans');
 Route::get('/daxtoolcat', 'ToolsController@daxtoolcat');
 Route::get('/rastoolcat', 'ToolsController@rastoolcat');
+Route::post('/daxtoolcatpag', 'ToolsController@daxtoolcatpag');
 Route::post('/catdoxod', 'ToolsController@catdoxod');
 Route::post('/catrasxod', 'ToolsController@catrasxod');
 Route::post('/catdoxred', 'ToolsController@catdoxred');

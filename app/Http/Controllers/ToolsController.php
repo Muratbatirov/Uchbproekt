@@ -36,17 +36,24 @@ class ToolsController extends Controller
     }
     public function rastoolcat()
     {
-     $rastoolcat = RasCategor::where('user_id', 1)->select('id', 'nomi')->orderBy('id')->get()->toJson();
-
-        
-      
+     $rastoolcat = RasCategor::where('user_id', 1)->select('id', 'nomi')->orderBy('id')->get();
 
             return $rastoolcat;
-          
-   
+
+    }
+     public function daxtoolcatpag(Request $request)
+    {
+
+        $daxskip= $request->get('daxskip')*5;  
+     $daxtoolcat = DaxCategor::where('user_id', 1)->select('id', 'nomi')->orderBy('id')->skip($daxskip)->take(5)->get()->toJson();
+
+            return $daxtoolcat;
+
     }
 public function catdoxod(Request $request)
     {
+
+
       $nomi = $request->get('nomi');   
            $categ = new DaxCategor;
 
