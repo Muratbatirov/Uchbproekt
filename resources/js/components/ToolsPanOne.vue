@@ -45,7 +45,7 @@
                                      <tr  v-for="(item, index) in daxtoolcatpag" >
                                        <td>
                                         <span class="custom-checkbox">
-                                          <input type="checkbox" :id="index" name="options[]" :value="index+1">
+                                          <input type="checkbox" :id="index+100" name="options[]" :value="index+1">
                                             <label :for="index"></label>
                                         </span>
                                       </td>
@@ -61,10 +61,10 @@ v-on:click.stop.prevent="udalit"><font-awesome-icon  :icon = "['fas', 'trash']"/
                       <div class="clearfix">
                            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                            <ul class="pagination">
-                               <li class="page-item"><a href="#">Previous</a></li>
-                               <li v-for="(item, index) in massiv" :key="item[index]" class="page-item"><a href="#" v-on:click.stop.prevent="daxpagin" :daxskip="index"  class="page-link">{{item+1}}</a></li>
+                               <li class="page-item"><a href="#" v-show="predidushi" v-on:click.stop.prevent="previos" class="page-link">Предыдущая</a></li>
+                               <li v-for="(item, index) in massiv" :key="item[index]" :id="index" class="page-item"><a href="#" v-on:click.stop.prevent="daxpagin" :daxskip="index"  class="page-link">{{item+1}}</a></li>
                                
-                               <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                               <li class="page-item"><a href="#"  v-show="sledushi" class="page-link">Следующая</a></li>
                            </ul>
                      </div>
         </div>
@@ -92,6 +92,7 @@ v-on:click.stop.prevent="udalit"><font-awesome-icon  :icon = "['fas', 'trash']"/
                    
        </div>
 
+
               </div>
               
          
@@ -108,6 +109,7 @@ export default {
                       return { 
                          
                        udalitmod: false,
+                       
 
                             
             }
@@ -121,10 +123,12 @@ export default {
       mounted(){
                this.$store.dispatch('DaxToolCat')
                this.$store.dispatch('DaxToolCatPag')
+                this.videlit()
+     
              
                },
       watch: {
-
+          
         
         },
       
@@ -134,6 +138,29 @@ export default {
                  this.udalitmod=false;
                  
              }},
+             previos(){
+              var id = this.daxskip
+
+              $('#0').trigger()
+
+             },
+            
+              videlit(){
+                var refresh = setInterval( () =>{
+                  
+                  if(document.getElementById('0') !=null && (this.daxskip==0)){
+              
+               let vsli =document.getElementById('0');
+               vsli.classList.add( 'active');
+               
+              clearInterval(refresh)
+
+                           }     
+
+              }, 500);
+
+                
+           },
               zakritclick:function (){
             
                  
@@ -231,7 +258,18 @@ export default {
                 daxskip(){
                   return this.$store.getters.daxskip;
                 },
-              
+              predidushi(){
+                if(this.daxskip != 0)
+                  return true;
+                else return false;
+                
+              },
+              sledushi(){
+                if(this.daxskip < this.massiv.length-1)
+                  return true;
+                else return false;
+                
+              }
 
                
                 
